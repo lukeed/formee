@@ -21,11 +21,11 @@ export default function (form) {
 			if (tmp.checked) {
 				j = out[key];
 				tmp = tmp.value === 'on' || tmp.value;
-				out[key] = (j == null && j != 0) ? tmp : [].concat(j, tmp);
+				out[key] = (j == null && j !== 0) ? tmp : [].concat(j, tmp);
 			}
-		} else if (tmp.value || tmp.value == 0) {
+		} else if (tmp.value || tmp.value === 0) {
 			j = out[key];
-			out[key] = (j == null && j != 0) ? tmp.value : [].concat(j, tmp.value);
+			out[key] = (j == null && j !== 0) ? tmp.value : [].concat(j, tmp.value);
 		}
 	}
 
