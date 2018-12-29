@@ -1,4 +1,4 @@
-export default function (form) {
+export function serialize (form) {
 	var i=0, j, key, tmp, out={};
 	var rgx1 = /(radio|checkbox)/i;
 	var rgx2 = /(file|reset|submit|button)/i;
