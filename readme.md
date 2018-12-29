@@ -1,6 +1,6 @@
 # serialize [![Build Status](https://travis-ci.org/lukeed/serialize.svg?branch=master)](https://travis-ci.org/lukeed/serialize)
 
-> A tiny (293B) utility for serializing forms into data objects.
+> A tiny (303B) utility for serializing forms into data objects.
 
 This module exposes three module definitions:
 

@@ -2,7 +2,7 @@
   "name": "serialize",
   "version": "0.0.0",
   "repository": "lukeed/serialize",
-  "description": "A tiny (293B) utility for serializing forms into data objects",
+  "description": "A tiny (303B) utility for serializing forms into data objects",
   "unpkg": "dist/serialize.min.js",
   "module": "dist/serialize.mjs",
   "main": "dist/serialize.js",
