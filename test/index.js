@@ -1,7 +1,8 @@
 const test = require('tape');
-const fn = require('../dist/serialize');
+const formee = require('../dist/formee');
 
 test('exports', t => {
-	t.is(typeof fn, 'function', 'exports a function');
+	t.is(typeof formee, 'object', 'exports a object');
+	t.is(typeof formee.serialize, 'function', '~> has "serialize" function');
 	t.end();
 });
