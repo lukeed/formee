@@ -1,25 +1,32 @@
-var KEY = 'ga:user';
+export default function (form) {
+	var i=0, j, key, tmp, out={};
+	var rgx = /(file|reset|submit|button)/i;
 
-export default function (ua, args, toWait) {
-	args = Object.assign({}, args, {
-		tid: ua,
-		cid: (localStorage[KEY] = localStorage[KEY] || Math.random() + '.' + Math.random())
-	});
+	while (tmp = form.elements[i++]) {
+		// Ignore unnamed, disabled, or (...rgx) inputs
+		if (!tmp.name || tmp.disabled || rgx.test(tmp.type)) continue;
 
-	function send(type, opts) {
-		if (type === 'pageview' && !opts) {
-			opts = { dl:location.href, dt:document.title };
+		key = tmp.name;
+
+		// Grab all values from multi-select
+		if (tmp.type === 'select-multiple') {
+			out[key] = [];
+			for (j=0; j < tmp.options.length; j++) {
+				if (tmp.options[j].selected) {
+					out[key].push(tmp.options[j].value);
+				}
+			}
+		} else if (tmp.checked !== void 0) {
+			if (tmp.checked) {
+				j = out[key];
+				tmp = tmp.value === 'on' || tmp.value;
+				out[key] = (j == null && j != 0) ? tmp : [].concat(j, tmp);
+			}
+		} else if (tmp.value || tmp.value == 0) {
+			j = out[key];
+			out[key] = (j == null && j != 0) ? tmp.value : [].concat(j, tmp.value);
 		}
-		var k, str='https://www.google-analytics.com/collect?v=1';
-		var obj = Object.assign({ t:type }, args, opts, { z:Date.now() });
-		for (k in obj) {
-			// modified `obj-str` behavior
-			if (obj[k]) str += ('&' + k + '=' + encodeURIComponent(obj[k]));
-		}
-		new Image().src = str; // dispatch a GET
 	}
 
-	toWait || send('pageview');
-
-	return { args, send };
+	return out;
 }
