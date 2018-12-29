@@ -1,6 +1,6 @@
 # formee [![Build Status](https://travis-ci.org/lukeed/formee.svg?branch=master)](https://travis-ci.org/lukeed/formee)
 
-> A tiny (305B) library for handling <form> elements
+> A tiny (305B) library for handling &#60;form&#62; elements
 
 This module exposes three module definitions:
 
