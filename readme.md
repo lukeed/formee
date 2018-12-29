@@ -1,25 +1,25 @@
-# serialize [![Build Status](https://travis-ci.org/lukeed/serialize.svg?branch=master)](https://travis-ci.org/lukeed/serialize)
+# formee [![Build Status](https://travis-ci.org/lukeed/formee.svg?branch=master)](https://travis-ci.org/lukeed/formee)
 
-> A tiny (303B) utility for serializing forms into data objects.
+> A tiny (305B) library for handling <form> elements
 
 This module exposes three module definitions:
 
-* **ES Module**: `dist/serialize.mjs`
-* **CommonJS**: `dist/serialize.js`
-* **UMD**: `dist/serialize.min.js`
+* **ES Module**: `dist/formee.mjs`
+* **CommonJS**: `dist/formee.js`
+* **UMD**: `dist/formee.min.js`
 
 
 ## Install
 
 ```
-$ npm install --save serialize
+$ npm install --save formee
 ```
 
 
 ## Usage
 
 ```js
-const serialize = require('serialize');
+const formee = require('formee');
 //
 ```
 
@@ -27,6 +27,11 @@ const serialize = require('serialize');
 ## API
 
 ### serialize(form)
+Return: `Object`
+
+Serializes a `<form>` into a data object.
+
+> **Important:** Any inputs that unnamed, disabled, or are of `type=file|reset|submit|button` will be ignored.
 
 #### form
 Type: `HTMLFormElement`

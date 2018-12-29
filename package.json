@@ -1,11 +1,11 @@
 {
-  "name": "serialize",
+  "name": "formee",
   "version": "0.0.0",
-  "repository": "lukeed/serialize",
-  "description": "A tiny (303B) utility for serializing forms into data objects",
-  "unpkg": "dist/serialize.min.js",
-  "module": "dist/serialize.mjs",
-  "main": "dist/serialize.js",
+  "repository": "lukeed/formee",
+  "description": "A tiny (305B) library for handling <form> elements",
+  "unpkg": "dist/formee.min.js",
+  "module": "dist/formee.mjs",
+  "main": "dist/formee.js",
   "license": "MIT",
   "author": {
     "name": "Luke Edwards",
@@ -24,6 +24,10 @@
     "dist"
   ],
   "keywords": [
+    "form",
+    "browser",
+    "serialize",
+    "validate"
   ],
   "devDependencies": {
     "gzip-size": "^3.0.0",
