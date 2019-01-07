@@ -34,8 +34,8 @@ export function serialize(form) {
 
 export function validate(form, rules, toCheck) {
 	rules = rules || {};
-	var nxt, isOkay=true, out={};
-	var k, msg, data=serialize(form);
+	var nxt, arr, isOkay=true, out={};
+	var k, msg, len, data=serialize(form);
 
 	if (toCheck.trim) {
 		nxt = {};
@@ -45,9 +45,13 @@ export function validate(form, rules, toCheck) {
 
 	for (k in rules) {
 		// Accomodate Function or RegExp
-		form.elements[k].isValid = void 0; // unset
 		msg = (rules[k].test || rules[k]).call(rules[k], data[k], data);
-		form.elements[k].isValid = (msg === true) || (out[k]=msg,isOkay=false);
+		// Accomodate radio|checkbox groups
+		nxt = form.elements[k];
+		arr = nxt.length ? nxt : [nxt];
+		for (len=arr.length; len--;) {
+			arr[len].isValid = (msg === true) || (out[k]=msg,isOkay=false);
+		}
 	}
 
 	form.isValid = isOkay;
