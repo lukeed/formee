@@ -1,4 +1,4 @@
-export function serialize (form) {
+export function serialize(form) {
 	var i=0, j, key, tmp, out={};
 	var rgx1 = /(radio|checkbox)/i;
 	var rgx2 = /(file|reset|submit|button)/i;
@@ -30,4 +30,41 @@ export function serialize (form) {
 	}
 
 	return out;
+}
+
+export function validate(form, opts) {
+	opts = opts || {};
+
+	form.validate = function (name) {
+		var isOkay=true, out={};
+		var rules = opts.rules || {};
+		var k, msg, data=serialize(form);
+
+		if (name.trim) {
+			rules = {};
+			rules[name] = rules[name];
+		}
+
+		for (k in rules) {
+			// Accomodate Function or RegExp
+			form.elements[k].isValid = void 0; // unset
+			msg = (rules[k].test || rules[k]).call(rules[k], data[k], data);
+			form.elements[k].isValid = (msg === true) || (out[k]=msg,isOkay=false);
+		}
+
+		form.isValid = isOkay;
+
+		return out;
+	};
+
+	// attach
+	if (opts.hijack) {
+		form.onsubmit = function (ev) {
+			ev.preventDefault();
+			ev.errors = form.errors = form.validate();
+			return form.isValid ? opts.onSubmit(ev) : opts.onError(ev);
+		};
+	}
+
+	return opts.NOW ? form.validate() : form;
 }
