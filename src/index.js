@@ -32,39 +32,40 @@ export function serialize(form) {
 	return out;
 }
 
-export function validate(form, opts) {
-	opts = opts || {};
+export function validate(form, rules, toCheck) {
+	rules = rules || {};
+	var nxt, isOkay=true, out={};
+	var k, msg, data=serialize(form);
 
-	form.validate = function (name) {
-		var isOkay=true, out={};
-		var rules = opts.rules || {};
-		var k, msg, data=serialize(form);
-
-		if (name.trim) {
-			rules = {};
-			rules[name] = rules[name];
-		}
-
-		for (k in rules) {
-			// Accomodate Function or RegExp
-			form.elements[k].isValid = void 0; // unset
-			msg = (rules[k].test || rules[k]).call(rules[k], data[k], data);
-			form.elements[k].isValid = (msg === true) || (out[k]=msg,isOkay=false);
-		}
-
-		form.isValid = isOkay;
-
-		return out;
-	};
-
-	// attach
-	if (opts.hijack) {
-		form.onsubmit = function (ev) {
-			ev.preventDefault();
-			ev.errors = form.errors = form.validate();
-			return form.isValid ? opts.onSubmit(ev) : opts.onError(ev);
-		};
+	if (toCheck.trim) {
+		nxt = {};
+		nxt[toCheck] = rules[toCheck];
+		rules = nxt;
 	}
 
-	return opts.NOW ? form.validate() : form;
+	for (k in rules) {
+		// Accomodate Function or RegExp
+		form.elements[k].isValid = void 0; // unset
+		msg = (rules[k].test || rules[k]).call(rules[k], data[k], data);
+		form.elements[k].isValid = (msg === true) || (out[k]=msg,isOkay=false);
+	}
+
+	form.isValid = isOkay;
+
+	return out;
+}
+
+export function bind(form, opts) {
+	opts = opts || {};
+
+	form.serialize = serialize.bind(null, form);
+	form.validate = validate.bind(null, form, opts.rules);
+
+	form.onsubmit = function (ev) {
+		ev.preventDefault();
+		ev.errors = form.errors = form.validate();
+		return form.isValid ? opts.onSubmit(ev) : opts.onError(ev);
+	};
+
+	return form;
 }
