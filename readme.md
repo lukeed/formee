@@ -1,6 +1,21 @@
-# formee [![Build Status](https://travis-ci.org/lukeed/formee.svg?branch=master)](https://travis-ci.org/lukeed/formee)
+<div align="center">
+  <img src="logo.png" alt="formee" height="120" />
+</div>
 
-> A tiny (532B) library for handling &#60;form&#62; elements
+<div align="center">
+  <a href="https://npmjs.org/package/formee">
+    <img src="https://badgen.now.sh/npm/v/formee" alt="version" />
+  </a>
+  <a href="https://travis-ci.org/lukeed/formee">
+    <img src="https://badgen.now.sh/travis/lukeed/formee" alt="travis" />
+  </a>
+  <a href="https://npmjs.org/package/formee">
+    <img src="https://badgen.now.sh/npm/dm/formee" alt="downloads" />
+  </a>
+  <a href="https://bundlephobia.com/result?p=formee">
+    <img src="https://badgen.net/badgesize/brotli/https://unpkg.com/formee?label=brotli" alt="install size" />
+  </a>
+</div>
 
 This module exposes three module definitions:
 
