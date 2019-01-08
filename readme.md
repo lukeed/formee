@@ -17,11 +17,19 @@
   </a>
 </div>
 
-This module exposes three module definitions:
+<div align="center">A tiny (532B) library for handling &#60;form&#62; elements</div>
 
-* **ES Module**: `dist/formee.mjs`
-* **CommonJS**: `dist/formee.js`
-* **UMD**: `dist/formee.min.js`
+## Features
+
+* Includes `serialize` and `validation` methods
+* Compatible with any UI library
+* Fully treeshakable
+
+Additionally, this module is delivered as:
+
+* **ES Module**: [`dist/formee.mjs`](https://unpkg.com/formee/dist/formee.mjs)
+* **CommonJS**: [`dist/formee.js`](https://unpkg.com/formee/dist/formee.js)
+* **UMD**: [`dist/formee.min.js`](https://unpkg.com/formee)
 
 
 ## Install
@@ -33,9 +41,49 @@ $ npm install --save formee
 
 ## Usage
 
+> :wave: [_View a full demo on Codepen_](https://codepen.io/lukeed/pen/dwKWVa)
+
+```html
+<form id="foo">
+  <h2>Register</h2>
+  <input type="email" name="email" />
+  <input type="password" name="password" />
+  <input type="password" name="confirm" />
+  <button>Register</button>
+</form>
+```
+
 ```js
-const formee = require('formee');
-// TODO
+const { validate } = require('formee');
+
+cost myForm = document.querySelector('#foo');
+const myRules = {
+  // RegExp rule
+  email: /.+\@.+\..+/,
+  // Function, with custom error messages
+  password(val) {
+    if (!val) return 'Required';
+    return val.length >= 8 || 'Must be at least 8 characters';
+  },
+  // Function, comparing to other value
+  confirm(val, data) {
+    if (!val) return 'Required';
+    return val === data.password || 'Must match your password';
+  }
+};
+
+myForm.onsubmit = function (ev) {
+  ev.preventDefault();
+  let errors = validate(myForm, myRules);
+  if (myForm.isValid) return alert('Success!');
+  for (let k in errors) {
+    // TODO: Render errors manually
+    //   with {insert favorite UI lib here}
+    console.log(`My rule & element's name: ${k}`);
+    console.log('> Error message:', errors[k] || 'Required');
+    console.log('> My form element(s):', myForm.elements[k]);
+  }
+};
 ```
 
 
@@ -157,6 +205,11 @@ formee.bind(myForm, {
     console.log(myForm.isValid, myForm.errors); //=> false { ... }
   }
 });
+
+// Now available:
+// ---
+form.serialize();
+form.validate(/* specific item? */);
 ```
 
 #### form
