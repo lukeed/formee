@@ -37,7 +37,7 @@ export function validate(form, rules, toCheck) {
 	var nxt, arr, isOkay=true, out={};
 	var k, msg, len, data=serialize(form);
 
-	if (toCheck.trim) {
+	if (toCheck && toCheck.trim) {
 		nxt = {};
 		nxt[toCheck] = rules[toCheck];
 		rules = nxt;
