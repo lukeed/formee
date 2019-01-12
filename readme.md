@@ -56,7 +56,7 @@ $ npm install --save formee
 ```js
 const { validate } = require('formee');
 
-cost myForm = document.querySelector('#foo');
+const myForm = document.querySelector('#foo');
 const myRules = {
   // RegExp rule
   email: /.+\@.+\..+/,
@@ -108,7 +108,7 @@ Return: `Object`
 Validates a `<form>` according to its `rules`.<br>
 To check an individual input, you may pass its name as the `toCheck` value.
 
-> **Important:** The `rules`' key names and `form.elements`' names must match~!
+> **Important:** The `rules` key names must match `form.elements`' names~!
 
 Returns an Object of errors, whose keys are the failing `rules` keys (and the `name=""`s of failing elements) and whose values are your error messages (if provided) else `false`.
 
@@ -139,7 +139,7 @@ Type: `Object`
 
 An object of rules for your form's inputs.
 
-> **Important:** The key names must match an `<form>` element's `name=""` attribute!
+> **Important:** The key names must match a `<form>` element's `name=""` attribute!
 
 The form values will be serialized before reaching your rule(s). (see [`serialize`](#formeeserializeform))<br>
 For example, a `select[multiple]` may present its value as `undefined`, a String, or an Array of Strings.
