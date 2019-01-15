@@ -23,7 +23,7 @@
 
 * Includes `serialize` and `validation` methods
 * Compatible with any UI library
-* Fully treeshakable
+* Fully [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)
 
 Additionally, this module is delivered as:
 
@@ -112,7 +112,7 @@ To check an individual input, you may pass its name as the `toCheck` value.
 
 Returns an Object of errors, whose keys are the failing `rules` keys (and the `name=""`s of failing elements) and whose values are your error messages (if provided) else `false`.
 
-Additionally, the `<form>` and _each_ of its elements will receive a new `isValid` property with a `Boolean` value.<br>For example:
+Additionally, the `<form>` and _each of its elements_ will receive a new `isValid` property with a `Boolean` value.<br>For example:
 
 ```js
 let myForm = document.querySelector('#myform');
