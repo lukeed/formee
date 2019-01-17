@@ -13,5 +13,3 @@ export interface BindOptions {
 }
 
 export declare function bind(form: HTMLFormElement, opts: BindOptions): HTMLFormElement;
-
-export {};
