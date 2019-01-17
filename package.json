@@ -6,6 +6,7 @@
   "unpkg": "dist/formee.min.js",
   "module": "dist/formee.mjs",
   "main": "dist/formee.js",
+  "types": "formee.d.ts",
   "license": "MIT",
   "author": {
     "name": "Luke Edwards",
@@ -21,6 +22,7 @@
     "test": "tape test/*.js | tap-spec"
   },
   "files": [
+    "*.d.ts",
     "dist"
   ],
   "keywords": [
