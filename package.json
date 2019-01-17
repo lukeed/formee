@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "repository": "lukeed/formee",
   "description": "A tiny (532B) library for handling <form> elements",
+  "types": "index.d.ts",
   "unpkg": "dist/formee.min.js",
   "module": "dist/formee.mjs",
   "main": "dist/formee.js",
