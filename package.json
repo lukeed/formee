@@ -1,6 +1,6 @@
 {
   "name": "formee",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": "lukeed/formee",
   "description": "A tiny (532B) library for handling <form> elements",
   "unpkg": "dist/formee.min.js",
