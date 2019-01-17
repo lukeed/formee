@@ -1,12 +1,12 @@
 export declare function serialize(form: HTMLFormElement): object;
 
-interface ValidationRules {
+export interface ValidationRules {
     [key: string]: RegExp | ((val: string, data: object) => boolean | string);
 }
 
 export declare function validate(form: HTMLFormElement, rules: ValidationRules, toCheck?: string): object;
 
-interface BindOptions {
+export interface BindOptions {
     onSubmit(event: Event): boolean;
     onError(event: Event): boolean;
     rules?: ValidationRules;
