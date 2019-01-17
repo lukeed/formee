@@ -41,7 +41,7 @@ $ npm install --save formee
 
 ## Usage
 
-> :wave: [_View a full demo on Codepen_](https://codepen.io/lukeed/pen/dwKWVa)
+> :wave: [_View a full demo on CodePen_](https://codepen.io/lukeed/pen/dwKWVa)
 
 ```html
 <form id="foo">
@@ -158,7 +158,7 @@ validate(form, {
     if (!val) return 'Required';
     if (val.length < 8) return 'Must be at least 8 characters';
     if (val !== data.confirmPassword) return 'Please confirm your password!';
-    return true; // all good homey
+    return true; // all good homie
   }
 });
 ```
